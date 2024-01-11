@@ -102,13 +102,56 @@ a:focus {
           flex-direction: column;
 }
 
+/* .bg-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+} */
+
 .bg-box {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden; /* To ensure no overflow if video is larger than container */
 }
+
+/* Aspect Ratio Preservation */
+/* Assuming a 16:9 aspect ratio for the video. Adjust as per your video's aspect ratio */
+.bg-box::before {
+  content: '';
+  display: block;
+  padding-top: 56.25%; /* 9 / 16 * 100% */
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video covers the entire container without distortion */
+}
+
+/* Media Queries for different screen sizes */
+@media (max-width: 768px) {
+  /* Styles for tablets and smaller devices */
+  .bg-box {
+    /* Adjust styles as needed for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Styles for mobile phones */
+  .bg-box {
+    /* Adjust styles as needed for mobile screens */
+  }
+}
+
+
 
 .bg-box img {
   width: 100%;
@@ -337,7 +380,7 @@ a:focus {
   width: 100%;
   position: unset;
 }
-
+/* 
 .slider_section .detail-box {
   color: #ffffff;
   margin-bottom: 145px;
@@ -351,7 +394,70 @@ a:focus {
 
 .slider_section .detail-box p {
   font-size: 14px;
+} */
+.detail-box {
+  position: relative;
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.content {
+  text-align: center; /* Center content for mobile */
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  position: relative;
+  top: 10px;
+  left: -50; /* Adjust as needed */
+}
+
+h1 {
+  font-weight: 900;
+  color: white;
+  font-size: 70px; /* Adjust for mobile in media query */
+}
+
+p {
+  font-weight: 800;
+  color: white;
+  font-size: 20px; /* Adjust for mobile in media query */
+}
+
+.btn-box {
+  position: relative;
+}
+
+.btn1 {
+  color: white;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  /* Styles for larger devices */
+  .content {
+    text-align: left; /* Align left for larger screens */
+    /* Adjust positioning as needed */
+  }
+  .logo {
+    left: 0; /* Adjust as needed */
+  }
+  h1 {
+    font-size: 70px; /* Larger font size for larger screens */
+  }
+  p {
+    font-size: 20px; /* Larger font size for larger screens */
+  }
+}
+
 
 .slider_section .detail-box a {
   display: inline-block;
